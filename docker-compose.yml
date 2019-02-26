@@ -1,0 +1,19 @@
+version: '3'
+services:
+  rancher:
+    image: rancher/rancher
+    restart: unless-stopped
+    ports:
+      - '80'
+
+  portal:
+    image: steveltn/https-portal
+    restart: always
+    ports:
+      - '8080:80'
+      - '8443:443'
+    environment:
+      STAGE: local
+      DOMAINS: 'localhost -> http://rancher:80'
+    links:
+      - nginx

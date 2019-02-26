@@ -1,0 +1,21 @@
+version: '3'
+services:
+  rancher:
+    image: rancher/rancher
+    restart: unless-stopped
+    ports:
+      - '80'
+    volumes:
+      - /opt/mysql:/var/lib/mysql
+
+  portal:
+    image: steveltn/https-portal
+    restart: always
+    ports:
+      - '8080:80'
+      - '8443:443'
+    environment:
+      STAGE: production
+      DOMAINS: 'derushio.work -> http://rancher:80'
+    links:
+      - nginx
