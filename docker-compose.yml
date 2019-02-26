@@ -16,4 +16,4 @@ services:
       STAGE: local
       DOMAINS: 'localhost -> http://rancher:80'
     links:
-      - nginx
+      - rancher

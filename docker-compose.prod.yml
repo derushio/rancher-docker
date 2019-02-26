@@ -18,4 +18,4 @@ services:
       STAGE: production
       DOMAINS: 'derushio.work -> http://rancher:80'
     links:
-      - nginx
+      - rancher
